@@ -25,3 +25,8 @@
 .giveUp:active {
   background-color: yellow;
 }
+
+.timer {
+  padding: 1.5vh;
+  font-size: 4vh;
+}

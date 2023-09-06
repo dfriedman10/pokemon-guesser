@@ -8,7 +8,7 @@ const GameMain = () => {
   const genEnds = constants.genEnds;
   const [gameStarted, setGameStarted] = useState(false);
   const [showColor, setShowColor] = useState(false);
-  const [timer, setTimer] = useState(false);
+  const [timerOn, setTimerOn] = useState(false);
   const [indices, setIndices] = useState(
     Array.from(Array(genEnds[genEnds.length - 1]).keys())
   );
@@ -26,7 +26,7 @@ const GameMain = () => {
       {gameStarted ? (
         <PokeGuesser
           showColor={showColor}
-          timer={timer}
+          timerOn={timerOn}
           indices={indices}
           setIndices={setIndices}
         />
@@ -35,7 +35,7 @@ const GameMain = () => {
           startGame={() => setGameStarted(true)}
           indices={indices}
           setIndices={setIndices}
-          setTimer={setTimer}
+          setTimerOn={setTimerOn}
           setShowColor={setShowColor}
         />
       )}

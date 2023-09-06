@@ -12,7 +12,7 @@ function randomizer(indices) {
   return indices[Math.floor(Math.random() * indices.length)];
 }
 
-const PokeGuesser = ({ showColor, timer, indices, setIndices }) => {
+const PokeGuesser = ({ showColor, timerOn, indices, setIndices }) => {
   const [stats, setStats] = useState({ correct: 0, total: 0 });
   const [randI, setRandI] = useState(randomizer(indices));
   const [showAnswer, setShowAnswer] = useState(false);
@@ -74,8 +74,10 @@ const PokeGuesser = ({ showColor, timer, indices, setIndices }) => {
           />
           {!showAnswer ? (
             <GuessingDialog
+              timerOn={timerOn}
               names={names}
               randI={randI}
+              nextPokemon={() => nextPokemon(indices)}
               incrementStats={(increase) => {
                 setStats({
                   total: stats.total + 1,

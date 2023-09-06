@@ -1,6 +1,15 @@
 import "./GuessingDialog.css";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const GuessingDialog = ({ names, randI, incrementStats, setShowAnswer }) => {
+const GuessingDialog = ({
+  timerOn,
+  names,
+  randI,
+  incrementStats,
+  setShowAnswer,
+  nextPokemon,
+}) => {
   // const [guess, setGuess] = useState("");
 
   const checkGuess = (guess) => {
@@ -9,6 +18,19 @@ const GuessingDialog = ({ names, randI, incrementStats, setShowAnswer }) => {
       setShowAnswer(true);
     }
   };
+  const [timeLeft, setTimeLeft] = useState(5);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (timeLeft <= 1) {
+        setShowAnswer(true);
+        incrementStats(false);
+      } else {
+        setTimeLeft((t) => t - 1);
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [timeLeft]);
 
   // function handleClick() {
   //   if (guess.toLowerCase() === names[randI].toLowerCase()) {
@@ -25,6 +47,7 @@ const GuessingDialog = ({ names, randI, incrementStats, setShowAnswer }) => {
   return (
     <>
       <div>
+        {timerOn && <b className="timer">{timeLeft}</b>}
         <input
           className="guessBox"
           autoFocus

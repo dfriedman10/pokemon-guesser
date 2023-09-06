@@ -5,7 +5,7 @@ const WelcomeScreen = ({
   indices,
   setIndices,
   setShowColor,
-  setTimer,
+  setTimerOn,
   startGame,
 }) => {
   return (
@@ -13,7 +13,7 @@ const WelcomeScreen = ({
       <GenChooser indices={indices} setIndices={setIndices} />
       <div className="switchContainer">
         <Switch text="Color " update={setShowColor} />
-        <Switch text="Timer " update={setTimer} />
+        <Switch text="Timer " update={setTimerOn} />
       </div>
       <switch />
       <input
