@@ -1,0 +1,15 @@
+.genGrid {
+  /* width: 60px; */
+  display: grid;
+  row-gap: 3vw;
+  column-gap: 3vh;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+
+  border-radius: 1em;
+  background-color: aqua;
+  margin-bottom: 1em;
+}
