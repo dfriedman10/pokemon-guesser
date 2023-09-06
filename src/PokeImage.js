@@ -8,12 +8,12 @@ const PokeImage = ({ pokeNumber, showAnswer, names }) => {
     <img
       draggable="false"
       className={showAnswer ? "" : "silhouetted"}
+      alt={names[pokeNumber - 1]}
       src={
         "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" +
         formattedNumber +
         ".png"
       }
-      alt={names[pokeNumber - 1]}
     />
   );
 };

@@ -18,6 +18,7 @@ const WelcomeScreen = ({
       <switch />
       <input
         type="image"
+        alt="Play"
         className="playButton"
         onClick={startGame}
         disabled={indices.length === 0}

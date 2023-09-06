@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const AnswerDialog = ({ names, randI, setShowAnswer, nextPokemon }) => {
   const [time, setTime] = useState(5);
@@ -26,7 +26,7 @@ const AnswerDialog = ({ names, randI, setShowAnswer, nextPokemon }) => {
     document.addEventListener("keydown", handleSpace);
 
     return () => document.removeEventListener("keydown", handleSpace);
-  });
+  }, []);
 
   return (
     <>
