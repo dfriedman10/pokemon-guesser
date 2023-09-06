@@ -21,7 +21,7 @@ const GameMain = () => {
         alignItems: "center",
       }}
     >
-      <img className="title" src={title} />
+      <img className="title" src={title} alt="Title" />
 
       {gameStarted ? (
         <PokeGuesser
