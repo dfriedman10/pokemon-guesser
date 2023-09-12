@@ -1,23 +1,15 @@
 import * as constants from "./data";
 import "./GenChooser.css";
 
-const GenChooser = ({ setIndices, indices }) => {
+const GenChooser = ({ setGens, gens }) => {
   const genEnds = constants.genEnds;
 
   const handleCheck = (checked, gen) => {
     if (checked) {
-      const thisGen = Array.from(
-        Array(genEnds[gen] - genEnds[gen - 1]).keys()
-      ).map((ind) => ind + genEnds[gen - 1]);
-
-      const newIndices = [...indices, ...thisGen];
-
-      setIndices(newIndices);
+      setGens([...gens, gen]);
     } else {
-      const newIndices = indices.filter(
-        (ind) => ind >= genEnds[gen] || ind < genEnds[gen - 1]
-      );
-      setIndices(newIndices);
+      const newGens = gens.filter((g) => g !== gen);
+      setGens(newGens);
     }
   };
 
@@ -26,8 +18,9 @@ const GenChooser = ({ setIndices, indices }) => {
       {genEnds.slice(1).map((val, i) => (
         <label key={i}>
           <input
+            style={{ width: "1.7vmin", height: "1.7vmin" }}
             type="checkbox"
-            defaultChecked={true}
+            defaultChecked={gens.includes(i + 1)}
             onChange={(e) => handleCheck(e.target.checked, i + 1)}
           />
           Gen {i + 1}

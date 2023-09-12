@@ -1,0 +1,29 @@
+.homeContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.title {
+  width: 80vmin;
+  height: 13vmin;
+  margin: 4vmin;
+}
+.homeIcon {
+  width: 6vmin;
+  position: absolute;
+  height: 6vmin;
+  margin: 2vmin;
+  transition: all 100ms;
+}
+
+.homeIcon:hover {
+  cursor: pointer;
+  filter: brightness(0.75);
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

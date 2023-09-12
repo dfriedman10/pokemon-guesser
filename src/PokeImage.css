@@ -1,8 +1,9 @@
-.silhouetted {
+.pokeImgSilhouetted {
   filter: brightness(0.05) grayscale(1);
 }
 
-img {
+.pokeImg,
+.pokeImgSilhouetted {
   width: 60vh;
   height: 60vh;
   transition: all 1s ease-out;

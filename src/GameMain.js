@@ -3,42 +3,76 @@ import PokeGuesser from "./PokeGuesser";
 import WelcomeScreen from "./WelcomeScreen";
 import * as constants from "./data";
 import title from "./Poke Title.png";
+import "./GameMain.css";
+import GameOver from "./GameOver";
 
 const GameMain = () => {
-  const genEnds = constants.genEnds;
-  const [gameStarted, setGameStarted] = useState(false);
-  const [showColor, setShowColor] = useState(false);
-  const [timerOn, setTimerOn] = useState(false);
-  const [indices, setIndices] = useState(
-    Array.from(Array(genEnds[genEnds.length - 1]).keys())
-  );
+  const Phase = constants.Phase;
+  const [options, setOptions] = useState(null);
+  const [phase, setPhase] = useState(Phase.main);
+  const [gens, setGens] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const [stats, setStats] = useState({ correct: 0, score: 0 });
+
+  const gameMode = () => {
+    switch (phase) {
+      case Phase.main:
+        return (
+          <WelcomeScreen
+            startGame={() => setPhase(Phase.guess)}
+            setGens={setGens}
+            gens={gens}
+            options={options}
+            setOptions={setOptions}
+          />
+        );
+
+      case Phase.complete:
+      case Phase.over:
+        return (
+          <GameOver
+            complete={phase === Phase.complete}
+            stats={stats}
+            setPhase={setPhase}
+            options={options}
+            setStats={setStats}
+            setOptions={setOptions}
+          />
+        );
+
+      default:
+        return (
+          <PokeGuesser
+            options={options}
+            setOptions={setOptions}
+            phase={phase}
+            setPhase={setPhase}
+            gens={gens}
+            stats={stats}
+            setStats={setStats}
+          />
+        );
+    }
+  };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <img className="title" src={title} alt="Title" />
+    <div>
+      <div className="homeContainer">
+        <img
+          className="homeIcon"
+          onClick={() => {
+            setPhase(Phase.main);
+            setOptions(null);
+            setStats({ correct: 0, score: 0 });
+          }}
+          alt="home"
+          src={require("./home.png")}
+        />
+      </div>
+      <div className="mainContainer">
+        <img className="title" src={title} alt="Title" />
 
-      {gameStarted ? (
-        <PokeGuesser
-          showColor={showColor}
-          timerOn={timerOn}
-          indices={indices}
-          setIndices={setIndices}
-        />
-      ) : (
-        <WelcomeScreen
-          startGame={() => setGameStarted(true)}
-          indices={indices}
-          setIndices={setIndices}
-          setTimerOn={setTimerOn}
-          setShowColor={setShowColor}
-        />
-      )}
+        {gameMode(phase)}
+      </div>
     </div>
   );
 };

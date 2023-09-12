@@ -1,11 +1,13 @@
-.guessContainer {
+.gameInterfaceContainer {
   justify-content: center;
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
 }
 
-.stats {
-  margin: 0px;
-  font-size: 4.5vh;
+.switchContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

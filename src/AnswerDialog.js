@@ -1,13 +1,22 @@
 import { useEffect, useState } from "react";
+import * as constants from "./data";
 
-const AnswerDialog = ({ names, randI, setShowAnswer, nextPokemon }) => {
+const AnswerDialog = ({ poke, setPhase, options, nextPokemon, stats }) => {
   const [time, setTime] = useState(5);
-  // const time = useRef(5);
+
+  const next = () => {
+    if (stats.over) {
+      setPhase(constants.Phase.over);
+    } else {
+      setPhase(constants.Phase.guess);
+      nextPokemon();
+    }
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (time <= 1) {
-        setShowAnswer(false);
-        nextPokemon();
+        next();
       } else {
         setTime((t) => t - 1);
       }
@@ -19,8 +28,7 @@ const AnswerDialog = ({ names, randI, setShowAnswer, nextPokemon }) => {
   useEffect(() => {
     const handleSpace = (e) => {
       if (e.key === " ") {
-        setShowAnswer(false);
-        nextPokemon();
+        next();
       }
     };
     document.addEventListener("keydown", handleSpace);
@@ -31,7 +39,13 @@ const AnswerDialog = ({ names, randI, setShowAnswer, nextPokemon }) => {
   return (
     <>
       <div>
-        <b style={{ fontSize: "4vh" }}>{names[randI]}</b>
+        <b style={{ fontSize: "4vh" }}>
+          {options.gameType === "freePlay"
+            ? options.gaveUp
+              ? poke.name
+              : "Correct!"
+            : poke.name}
+        </b>
         <p style={{ fontSize: "2vh" }}>{time} (press space to skip)</p>
       </div>
     </>

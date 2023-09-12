@@ -9,20 +9,50 @@
   margin-right: 2vw;
 }
 
-.giveUp {
+.guessContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hintButton {
+  border: 0px;
+  background-color: lightgreen;
+  border-radius: 1vh;
+  width: 12vh;
+  height: 4vh;
+  font: 2.2vh arial;
+  margin-left: 2vw;
+}
+
+.giveUpButton {
   border: 0px;
   background-color: lightcoral;
   border-radius: 1vh;
   width: 12vh;
   height: 4vh;
   font: 2.2vh arial;
+  margin-left: 2vw;
 }
 
-.giveUp:hover {
+.hintImage {
+  height: 6vh;
+  width: 6vh;
+}
+.hintButton:hover {
+  cursor: pointer;
+  background-color: rgb(171, 243, 171);
+}
+.hintButton:active {
+  background-color: yellow;
+}
+
+.giveUpButton:hover {
   cursor: pointer;
   background-color: coral;
 }
-.giveUp:active {
+.giveUpButton:active {
   background-color: yellow;
 }
 

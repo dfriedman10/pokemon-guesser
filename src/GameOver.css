@@ -1,0 +1,42 @@
+.gameOverContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gameOverTitle {
+  font-size: 6vmin;
+}
+
+.tryAgainButton,
+.backButton {
+  border-radius: 2vh;
+  padding: 2vh;
+  font: 2.2vh arial;
+  margin: 2vmin;
+  border-style: solid;
+}
+
+.tryAgainButton {
+  background-color: rgb(174, 233, 101);
+  border-color: rgb(113, 169, 46);
+}
+.tryAgainButton:hover {
+  cursor: pointer;
+  background-color: rgb(113, 169, 46);
+}
+
+.backButton {
+  background-color: lightpink;
+  border-color: rgb(210, 104, 120);
+}
+
+.backButton:hover {
+  cursor: pointer;
+  background-color: rgb(210, 104, 120);
+}
+
+.backButton:active,
+.tryAgainButton:active {
+  background-color: yellow;
+}

@@ -1,4 +1,4 @@
-export const genEnds = [0, 151, 251, 386, 493, 649, 721, 809, 905, 1010];
+export const genEnds = [0, 3, 251, 386, 493, 649, 721, 809, 905, 1010];
 
 export const suffixes = [
   "f",
@@ -60,4 +60,12 @@ export const specialNames = {
     "Hakamo-o",
     "Kommo-o",
   ],
+};
+
+export const Phase = {
+  main: 0,
+  guess: 1,
+  answer: 2,
+  over: 3,
+  complete: 4,
 };

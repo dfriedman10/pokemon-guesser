@@ -1,77 +1,54 @@
 /* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 9vh;
-  height: 5vh;
-  margin-bottom: 1vh;
+
+.choicesContainer {
+  display: flex;
+  flex-direction: row;
 }
 
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.freePlayOption,
+.competitiveOption {
+  border: 3px solid;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40vw;
+  margin: 2.5vw;
+  padding: 1vw;
+  height: 20vh;
 }
 
-/* The slider */
-.slider {
-  border-radius: 6vh;
-
-  position: absolute;
+.freePlayOption {
+  border-color: aquamarine;
+}
+.freePlayOption:hover {
+  background-color: rgb(200, 248, 232);
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+}
+.freePlayOption:active {
+  background-color: aquamarine;
+}
+.competitiveOption {
+  border-color: coral;
+}
+.competitiveOption:hover {
+  background-color: rgb(240, 181, 181);
+  cursor: pointer;
+}
+.competitiveOption:active {
+  background-color: coral;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 75%;
-  width: 42%;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #2196f3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
-}
-
-.mainContainer {
+.welcomeContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.title {
-  width: 80vh;
-  height: 13vh;
-  margin: 4vh;
-}
-
 .playButton {
   margin-top: 2vh;
-  width: 40vh;
-  height: 16vh;
+  width: 40vmin;
+  height: 16vmin;
   content: url("./Play\ button.png");
 }
 .playButton:hover:enabled {

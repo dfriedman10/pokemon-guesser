@@ -1,41 +1,64 @@
 import GenChooser from "./GenChooser";
 import "./WelcomeScreen.css";
 
-const WelcomeScreen = ({
-  indices,
-  setIndices,
-  setShowColor,
-  setTimerOn,
-  startGame,
-}) => {
+const WelcomeScreen = ({ setGens, gens, startGame, options, setOptions }) => {
   return (
-    <div className="mainContainer">
-      <GenChooser indices={indices} setIndices={setIndices} />
-      <div className="switchContainer">
-        <Switch text="Color " update={setShowColor} />
-        <Switch text="Timer " update={setTimerOn} />
+    <div className="welcomeContainer">
+      <GenChooser setGens={setGens} gens={gens} />
+      <div className="choicesContainer">
+        <div
+          className="competitiveOption"
+          style={
+            options && options.gameType === "competitive"
+              ? { backgroundColor: "rgb(240, 181, 181)" }
+              : {}
+          }
+          onClick={() =>
+            setOptions({
+              gameType: "competitive",
+              timer: true,
+              color: false,
+              scoreMult: 0.9 + 0.1 * gens.length,
+            })
+          }
+        >
+          <h2 style={{ fontSize: "3.5vmin" }}>Competitive Mode</h2>
+          <p style={{ fontSize: "2.5vmin" }}>
+            Survival mode. Score more points for quick answers and for more
+            selected generations
+          </p>
+        </div>
+        <div
+          onClick={() =>
+            setOptions({
+              gameType: "freePlay",
+              timer: false,
+              color: false,
+              scoreMult: 0.9 + 0.1 * gens.length,
+            })
+          }
+          className="freePlayOption"
+          style={
+            options && options.gameType === "freePlay"
+              ? { backgroundColor: "rgb(200, 248, 232)" }
+              : {}
+          }
+        >
+          <h2 style={{ fontSize: "3.5vmin" }}>Free Play Mode</h2>
+          <p style={{ fontSize: "2.5vmin" }}>
+            Turn timer on or off, guess pokemon by silhouette or by image, and
+            get hints if you're stuck
+          </p>
+        </div>
       </div>
-      <switch />
       <input
         type="image"
         alt="Play"
         className="playButton"
         onClick={startGame}
-        disabled={indices.length === 0}
+        disabled={gens.length === 0 || options === null}
       />
     </div>
-  );
-};
-
-const Switch = ({ text, update }) => {
-  return (
-    <form>
-      {text}
-      <label className="switch">
-        <input type="checkbox" onChange={(e) => update(e.target.checked)} />
-        <span className="slider" />
-      </label>
-    </form>
   );
 };
 

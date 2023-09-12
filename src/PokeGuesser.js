@@ -3,20 +3,48 @@ import { useEffect } from "react";
 import * as constants from "./data";
 import "./PokeGuesser.css";
 import axios from "axios";
-import EmptyDialog from "./EmptyDialog";
+import GameOver from "./GameOver";
 import AnswerDialog from "./AnswerDialog";
 import GuessingDialog from "./GuessingDialog";
 import PokeImage from "./PokeImage";
+import Switch from "./Switch";
 
-function randomizer(indices) {
+const randomizer = (indices) => {
   return indices[Math.floor(Math.random() * indices.length)];
-}
+};
 
-const PokeGuesser = ({ showColor, timerOn, indices, setIndices }) => {
-  const [stats, setStats] = useState({ correct: 0, total: 0 });
+const genIndices = (gens) => {
+  const genEnds = constants.genEnds;
+
+  const i1 = gens.map((g) =>
+    Array.from(Array(genEnds[g] - genEnds[g - 1]), (x, i) => i + genEnds[g - 1])
+  );
+
+  return [].concat(...i1);
+};
+
+const PokeGuesser = ({
+  options,
+  stats,
+  setStats,
+  setOptions,
+  phase,
+  setPhase,
+  gens,
+}) => {
+  const [indices, setIndices] = useState(genIndices(gens));
+  const [poke, setPoke] = useState("");
   const [randI, setRandI] = useState(randomizer(indices));
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [names, setNames] = useState([]);
+
+  const Phase = constants.Phase;
+
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${randI + 1}/`)
+      .then((response) => response.json())
+      .then((poke) =>
+        setPoke({ name: formatName(poke.name), types: poke.types })
+      );
+  }, [randI]);
 
   const capFirstLetter = (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
@@ -40,18 +68,6 @@ const PokeGuesser = ({ showColor, timerOn, indices, setIndices }) => {
     return capFirstLetter(name);
   };
 
-  useEffect(() => {
-    const fetchNames = async () => {
-      const url = `https://pokeapi.co/api/v2/pokemon/?limit=${
-        constants.genEnds[constants.genEnds.length - 1]
-      }}`;
-      const response = await axios.get(url);
-      const data = response.data;
-      setNames(data.results.map((poke) => formatName(poke.name)));
-    };
-    fetchNames();
-  }, []);
-
   const nextPokemon = (paramIndices) => {
     const newIndices = paramIndices.filter((val) => val !== randI);
     setIndices(newIndices);
@@ -59,44 +75,58 @@ const PokeGuesser = ({ showColor, timerOn, indices, setIndices }) => {
   };
 
   return (
-    <div className="guessContainer">
-      <h2 className="stats">
-        {"Correct: " + stats.correct + "/" + stats.total}
-      </h2>
-
-      {indices.length > 0 ? (
-        <>
-          <PokeImage
-            key={randI}
-            pokeNumber={randI + 1}
-            showAnswer={showAnswer || showColor}
-            names={names}
+    // ADD IF THEY GET THEM ALL
+    <div className="gameInterfaceContainer">
+      {options.gameType === "freePlay" ? (
+        <div className="switchContainer">
+          <Switch
+            text="Timer          "
+            update={(t) => setOptions({ ...options, timer: t })}
           />
-          {!showAnswer ? (
-            <GuessingDialog
-              timerOn={timerOn}
-              names={names}
-              randI={randI}
-              nextPokemon={() => nextPokemon(indices)}
-              incrementStats={(increase) => {
-                setStats({
-                  total: stats.total + 1,
-                  correct: increase ? stats.correct + 1 : stats.correct,
-                });
-              }}
-              setShowAnswer={setShowAnswer}
-            />
-          ) : (
-            <AnswerDialog
-              names={names}
-              randI={randI}
-              setShowAnswer={setShowAnswer}
-              nextPokemon={() => nextPokemon(indices)}
-            />
-          )}
-        </>
+
+          <Switch
+            text="Silhouettes   "
+            update={(c) => setOptions({ ...options, color: c })}
+          />
+        </div>
       ) : (
-        <EmptyDialog />
+        <h2
+          className="stats"
+          style={{
+            margin: "0px",
+            fontSize: "4.5vh",
+            color: stats.over ? "red" : "black",
+          }}
+        >
+          {stats.over ? "Time's Up!" : `Score: ${stats.score}`}
+        </h2>
+      )}
+
+      <PokeImage
+        key={randI}
+        pokeNumber={randI + 1}
+        showAnswer={phase === Phase.answer || options.color}
+        poke={poke}
+      />
+      {phase === Phase.guess ? (
+        <GuessingDialog
+          options={options}
+          setOptions={setOptions}
+          poke={poke}
+          nextPokemon={() => nextPokemon(indices)}
+          stats={stats}
+          setStats={setStats}
+          setPhase={setPhase}
+          indices={indices}
+        />
+      ) : (
+        <AnswerDialog
+          poke={poke}
+          options={options}
+          stats={stats}
+          setPhase={setPhase}
+          nextPokemon={() => nextPokemon(indices)}
+        />
       )}
     </div>
   );
