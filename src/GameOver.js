@@ -19,6 +19,15 @@ const GameOver = ({
           ? `You named every Pokemon in the selected generations (${stats.correct} total)! Your score is ${stats.score}`
           : `You got ${stats.correct} correct for a score of ${stats.score}`}
       </h3>
+      <h3> Enter your name for the leaderboard:</h3>
+
+      <input
+        className="leaderboardEntryBox"
+        autoFocus
+        type="text"
+        // onChange={(e) => checkGuess(e.target.value)}
+      />
+
       <button
         className="tryAgainButton"
         onClick={() => {
@@ -32,7 +41,7 @@ const GameOver = ({
         Try again
       </button>
 
-      <button
+      {/* <button
         className="backButton"
         onClick={() => {
           setPhase(constants.Phase.main);
@@ -41,7 +50,7 @@ const GameOver = ({
         }}
       >
         Back to Main
-      </button>
+      </button> */}
     </div>
   );
 };

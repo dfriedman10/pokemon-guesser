@@ -40,3 +40,15 @@
 .tryAgainButton:active {
   background-color: yellow;
 }
+
+.leaderboardEntryBox {
+  width: 40vh;
+  height: 5vh;
+  border-radius: 2vh;
+  background-color: lightblue;
+  padding: 1vh;
+  text-align: center;
+  font: 4.5vh courier;
+  margin-right: 2vw;
+  border-style: solid;
+}
