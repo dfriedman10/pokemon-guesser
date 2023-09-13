@@ -2,8 +2,8 @@
   /* width: 35vw;
   height: 20vh; */
   display: grid;
-  row-gap: 3vw;
-  column-gap: 3vh;
+  row-gap: 2vh;
+  column-gap: 3vw;
   grid-template-columns: 1fr 1fr 1fr;
   padding-left: 2vw;
   padding-right: 2vw;
