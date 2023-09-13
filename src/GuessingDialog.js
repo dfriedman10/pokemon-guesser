@@ -13,6 +13,7 @@ const GuessingDialog = ({
   indices,
 }) => {
   const checkGuess = (guess) => {
+    if (guess.trim().length === 0) return;
     if (guess.trim().toLowerCase() === poke.name.toLowerCase()) {
       if (options.gameType === "competitive")
         setStats({

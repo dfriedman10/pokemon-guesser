@@ -7,10 +7,8 @@ import "./GameMain.css";
 import GameOver from "./GameOver";
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://support.google.com/firebase/answer/7015592
 const firebaseConfig = {
   apiKey: "AIzaSyBjVeVrmWYU1MNPJAAgcHM8jB3up5_nk3w",
   authDomain: "pokeguesser-665bb.firebaseapp.com",
@@ -33,27 +31,6 @@ const GameMain = () => {
   const [phase, setPhase] = useState(Phase.main);
   const [gens, setGens] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   const [stats, setStats] = useState({ correct: 0, score: 0 });
-
-  async function test() {
-    try {
-      const docRef = await addDoc(collection(db, "users"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815,
-      });
-      console.log("Document written with ID: ", docRef.id);
-      const querySnapshot = await getDocs(collection(db, "users"));
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-      });
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  }
-
-  useEffect(() => {
-    test();
-  });
 
   const gameMode = () => {
     switch (phase) {
@@ -78,6 +55,8 @@ const GameMain = () => {
             options={options}
             setStats={setStats}
             setOptions={setOptions}
+            db={db}
+            gens={gens}
           />
         );
 
