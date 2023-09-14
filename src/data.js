@@ -1,4 +1,4 @@
-export const genEnds = [0, 3, 251, 386, 493, 649, 721, 809, 905, 1010];
+export const genEnds = [0, 151, 251, 386, 493, 649, 721, 809, 905, 1010];
 
 export const suffixes = [
   "f",
