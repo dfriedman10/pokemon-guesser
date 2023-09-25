@@ -1,3 +1,5 @@
+## PokeGuesser
+
 PokeGuesser is a web guessing game for fans to test their Pokemon knowledge. It offers two modes, with the primary goal of guessing the currently displayed Pokemon's name. 
 
 ## Available Scripts
