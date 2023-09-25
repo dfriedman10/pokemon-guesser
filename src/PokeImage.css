@@ -4,7 +4,7 @@
 
 .pokeImg,
 .pokeImgSilhouetted {
-  width: 60vh;
-  height: 60vh;
+  width: 60vmin;
+  height: 60vmin;
   transition: all 1s ease-out;
 }

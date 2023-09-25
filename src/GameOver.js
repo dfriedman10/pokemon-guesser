@@ -2,6 +2,8 @@ import { useState } from "react";
 import * as constants from "./data";
 import "./GameOver.css";
 
+// COMPLETE ALL IN FREE PLAY => CAN GO ON LEADERBOARD
+
 import {
   orderBy,
   limit,

@@ -85,7 +85,7 @@ const PokeGuesser = ({
           />
 
           <Switch
-            text="Silhouettes   "
+            text="Color   "
             update={(c) => setOptions({ ...options, color: c })}
           />
         </div>

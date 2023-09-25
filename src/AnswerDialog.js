@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BrowserView, MobileView } from "react-device-detect";
 import * as constants from "./data";
 
 const AnswerDialog = ({ poke, setPhase, options, nextPokemon, stats }) => {
@@ -39,14 +40,21 @@ const AnswerDialog = ({ poke, setPhase, options, nextPokemon, stats }) => {
   return (
     <>
       <div>
-        <b style={{ fontSize: "4vh" }}>
+        <b style={{ fontSize: "4vmin" }}>
           {options.gameType === "freePlay"
             ? options.gaveUp
               ? poke.name
               : "Correct!"
             : poke.name}
         </b>
-        <p style={{ fontSize: "2vh" }}>{time} (press space to skip)</p>
+        <BrowserView>
+          <p style={{ fontSize: "2vmin" }}>{time} (press space to skip)</p>
+        </BrowserView>
+        <MobileView>
+          <p style={{ fontSize: "2vmin" }} onClick={next}>
+            {time} (tap to skip)
+          </p>
+        </MobileView>
       </div>
     </>
   );

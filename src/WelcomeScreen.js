@@ -1,5 +1,7 @@
 import GenChooser from "./GenChooser";
 import "./WelcomeScreen.css";
+import { BrowserView, MobileView } from "react-device-detect";
+import playImage from "./Play button.png";
 
 const WelcomeScreen = ({ setGens, gens, startGame, options, setOptions }) => {
   return (
@@ -51,13 +53,25 @@ const WelcomeScreen = ({ setGens, gens, startGame, options, setOptions }) => {
           </p>
         </div>
       </div>
-      <input
-        type="image"
-        alt="Play"
-        className="playButton"
-        onClick={startGame}
-        disabled={gens.length === 0 || options === null}
-      />
+      <BrowserView>
+        <input
+          type="image"
+          alt="Play"
+          className="playButton"
+          onClick={startGame}
+          disabled={gens.length === 0 || options === null}
+        />
+      </BrowserView>
+      <MobileView>
+        <input
+          type="image"
+          alt="Play"
+          className="playButtonMobile"
+          src={playImage}
+          onClick={startGame}
+          disabled={gens.length === 0 || options === null}
+        />
+      </MobileView>
     </div>
   );
 };

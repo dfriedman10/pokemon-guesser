@@ -1,11 +1,11 @@
 .guessBox {
-  width: 40vh;
-  height: 5vh;
-  border-radius: 2vh;
+  width: 40vmin;
+  height: 5vmin;
+  border-radius: 2vmin;
   background-color: lightblue;
-  padding: 1vh;
+  padding: 1vmin;
   text-align: center;
-  font: 4.5vh courier;
+  font: 4.5vmin courier;
   margin-right: 2vw;
   border-style: solid;
 }
@@ -20,26 +20,26 @@
 .hintButton {
   border: 0px;
   background-color: lightgreen;
-  border-radius: 1vh;
-  width: 12vh;
-  height: 4vh;
-  font: 2.2vh arial;
+  border-radius: 1vmin;
+  width: 12vmin;
+  height: 4vmin;
+  font: 2.2vmin arial;
   margin-left: 2vw;
 }
 
 .giveUpButton {
   border: 0px;
   background-color: lightcoral;
-  border-radius: 1vh;
-  width: 12vh;
-  height: 4vh;
-  font: 2.2vh arial;
+  border-radius: 1vmin;
+  width: 12vmin;
+  height: 4vmin;
+  font: 2.2vmin arial;
   margin-left: 2vw;
 }
 
 .hintImage {
-  height: 6vh;
-  width: 6vh;
+  height: 6vmin;
+  width: 6vmin;
 }
 .hintButton:hover {
   cursor: pointer;
@@ -58,6 +58,6 @@
 }
 
 .timer {
-  padding: 1.5vh;
-  font-size: 4vh;
+  padding: 1.5vmin;
+  font-size: 4vmin;
 }
