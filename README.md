@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PokeGuesser is a web guessing game for fans to test their Pokemon knowledge. It offers two modes, with the primary goal of guessing the currently displayed Pokemon's name. 
 
 ## Available Scripts
 
